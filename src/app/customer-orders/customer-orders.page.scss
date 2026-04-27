@@ -1,0 +1,357 @@
+// ── SHARED STYLES for Cart + Orders ────────────────────
+
+ion-content {
+  --background: #0a0a0a;
+  --overflow: scroll;
+}
+
+.cart-toolbar {
+  --background: #0a0a0a;
+  --border-width: 0;
+  --min-height: 56px;
+}
+
+.toolbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #1e1e1e;
+  text-decoration: none;
+  color: #c9a84c;
+  font-size: 13px;
+  font-weight: 600;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  &:active { background: #2a2a2a; }
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f0ede8;
+}
+
+.clear-btn {
+  font-size: 13px;
+  color: #888580;
+  padding: 8px 4px;
+  cursor: pointer;
+  min-width: 60px;
+  text-align: right;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+// ── EMPTY STATE ────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 32px;
+  text-align: center;
+  gap: 14px;
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #f0ede8;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: #888580;
+    margin: 0;
+  }
+}
+
+.empty-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #c9a84c;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-top: 4px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  &:active { background: #e8c97a; }
+}
+
+// ── LIST ───────────────────────────────────────────────
+.list-wrap {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── CART ITEM ──────────────────────────────────────────
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #141414;
+  border-radius: 16px;
+  border: 1px solid #1e1e1e;
+  padding: 12px;
+}
+
+.item-img-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #1a1a1a;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-category {
+  font-size: 10px;
+  color: #888580;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 3px;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f0ede8;
+  margin: 0 0 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #c9a84c;
+  margin: 0;
+}
+
+.remove-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(224,82,82,0.12);
+  border: 1px solid rgba(224,82,82,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: #e05252;
+  font-size: 16px;
+  font-weight: 700;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  &:active { background: rgba(224,82,82,0.25); }
+}
+
+// ── ORDER CARD ─────────────────────────────────────────
+.order-card {
+  background: #141414;
+  border-radius: 18px;
+  border: 1px solid #1e1e1e;
+  padding: 16px;
+}
+
+.order-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.order-label {
+  font-size: 10px;
+  color: #888580;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 2px;
+}
+
+.order-id {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f0ede8;
+  margin: 0;
+}
+
+// Status pills
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-pending    { background: rgba(201,168,76,0.15); color: #c9a84c; }
+.status-preparing  { background: rgba(100,160,240,0.15); color: #64a0f0; }
+.status-out-for-delivery { background: rgba(180,120,255,0.15); color: #b478ff; }
+.status-delivered  { background: rgba(76,175,130,0.15); color: #4caf82; }
+
+// Order product row
+.order-product {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.order-img-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #1a1a1a;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.order-product-info { flex: 1; }
+
+.order-divider {
+  height: 1px;
+  background: #1e1e1e;
+  margin-bottom: 14px;
+}
+
+// Meta rows
+.order-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: #888580;
+  flex-shrink: 0;
+}
+
+.meta-value {
+  font-size: 13px;
+  color: #f0ede8;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// ── CART FOOTER ────────────────────────────────────────
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #141414;
+  border-top: 1px solid #1e1e1e;
+  padding: 16px 20px 32px;
+  z-index: 100;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #888580;
+}
+
+.summary-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.total-label {
+  font-size: 11px;
+  color: #888580;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f0ede8;
+}
+
+.checkout-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  background: #c9a84c;
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  &:active { background: #e8c97a; }
+}

@@ -1,0 +1,92 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="cart-toolbar">
+    <div class="toolbar-inner">
+      <a routerLink="/home" class="back-btn">← Back</a>
+      <span class="page-title">My Bag</span>
+      <div class="clear-btn" *ngIf="!isCartEmpty && !showCheckout" (click)="clearAll()">Clear all</div>
+      <div style="width:60px;" *ngIf="isCartEmpty || showCheckout"></div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--overflow: scroll; --background: #0a0a0a;">
+
+  
+  <div *ngIf="isCartEmpty && !showCheckout" class="empty-state">
+    <div class="empty-icon-wrap">🛍️</div>
+    <h2>Your bag is empty</h2>
+    <p>Add items from the store to get started</p>
+    <a routerLink="/home" class="action-btn">Browse Products</a>
+  </div>
+
+
+  <div *ngIf="!isCartEmpty && !showCheckout" class="list-wrap">
+    <div *ngFor="let item of cart" class="item-card">
+      <div class="item-img-wrap">
+        <img [src]="item.img || 'https://via.placeholder.com/90'" [alt]="item.name" />
+      </div>
+      <div class="item-details">
+        <p class="item-category">{{ item.category }}</p>
+        <h3 class="item-name">{{ item.name }}</h3>
+        <p class="item-price">₱{{ item.price | number }}</p>
+      </div>
+      <div class="remove-btn" (click)="removeItem(item)">✕</div>
+    </div>
+  </div>
+
+
+  <div *ngIf="showCheckout" class="checkout-form">
+    <h2 class="form-title">Order Details</h2>
+    <p class="form-sub">Fill in your delivery information</p>
+
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" placeholder="e.g. Juan Dela Cruz"
+             [(ngModel)]="checkoutName" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Contact Number</label>
+      <input class="form-input" type="tel" placeholder="e.g. 09123456789"
+             [(ngModel)]="checkoutContact" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Delivery Address</label>
+      <input class="form-input" type="text" placeholder="e.g. 123 Rizal St, Baguio City"
+             [(ngModel)]="checkoutAddress" />
+    </div>
+
+
+    <div class="order-summary">
+      <div *ngFor="let item of cart" class="summary-item">
+        <span class="summary-item-name">{{ item.name }}</span>
+        <span class="summary-item-price">₱{{ item.price | number }}</span>
+      </div>
+      <div class="summary-total-row">
+        <span>Total</span>
+        <span class="summary-total-price">₱{{ getTotal() | number }}</span>
+      </div>
+    </div>
+
+    <div class="form-error" *ngIf="formError">{{ formError }}</div>
+
+    <div class="form-buttons">
+      <div class="cancel-btn" (click)="cancelCheckout()">Cancel</div>
+      <div class="place-order-btn" (click)="placeOrder()">Place Order 🎉</div>
+    </div>
+  </div>
+
+  <div style="height: 160px;"></div>
+</ion-content>
+
+<div *ngIf="!isCartEmpty && !showCheckout" class="sticky-footer">
+  <div class="summary-row">
+    <span class="summary-label">{{ cart.length }} item{{ cart.length > 1 ? 's' : '' }}</span>
+    <div class="summary-right">
+      <span class="total-label">Total</span>
+      <span class="total-amount">₱{{ getTotal() | number }}</span>
+    </div>
+  </div>
+  <div class="checkout-btn" (click)="checkout()">Proceed to Checkout →</div>
+</div>

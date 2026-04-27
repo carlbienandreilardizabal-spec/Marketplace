@@ -1,2 +1,30 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+// ── Marketplace Design System ──────────────────────────
+// Dark luxury theme with gold accents
+
+:root {
+  --mp-bg:           #0a0a0a;
+  --mp-surface:      #141414;
+  --mp-surface2:     #1e1e1e;
+  --mp-border:       #2a2a2a;
+  --mp-gold:         #c9a84c;
+  --mp-gold-light:   #e8c97a;
+  --mp-gold-dim:     rgba(201,168,76,0.15);
+  --mp-text:         #f0ede8;
+  --mp-text-muted:   #888580;
+  --mp-danger:       #e05252;
+  --mp-success:      #4caf82;
+  --mp-radius:       16px;
+  --mp-radius-sm:    10px;
+  --mp-shadow:       0 8px 32px rgba(0,0,0,0.5);
+
+  // Ionic overrides
+  --ion-background-color: var(--mp-bg);
+  --ion-text-color: var(--mp-text);
+  --ion-color-primary: var(--mp-gold);
+  --ion-color-primary-contrast: #000;
+  --ion-toolbar-background: var(--mp-surface);
+  --ion-tab-bar-background: var(--mp-surface);
+  --ion-tab-bar-border-color: var(--mp-border);
+  --ion-item-background: transparent;
+  --ion-card-background: var(--mp-surface);
+}

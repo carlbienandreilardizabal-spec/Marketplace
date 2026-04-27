@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="cart-toolbar">
+    <div class="toolbar-inner">
+      <a routerLink="/home" class="back-btn">← Back</a>
+      <span class="page-title">My Orders</span>
+      <div style="width:60px;"></div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--overflow: scroll; --background: #0a0a0a;">
+
+  <!-- Empty State -->
+  <div *ngIf="!orders.length" class="empty-state">
+    <div class="empty-icon-wrap">🧾</div>
+    <h2>No orders yet</h2>
+    <p>Your placed orders will appear here</p>
+    <a routerLink="/home" class="action-btn">Start Shopping</a>
+  </div>
+
+  <!-- Orders List -->
+  <div *ngIf="orders.length" class="list-wrap">
+    <div *ngFor="let o of orders" class="order-card">
+
+      <!-- Header -->
+      <div class="order-header">
+        <div>
+          <p class="order-label">Order</p>
+          <h3 class="order-id">#{{ o.id }}</h3>
+        </div>
+        <div class="status-pill" [ngClass]="getStatusClass(o.status)">
+          {{ o.status }}
+        </div>
+      </div>
+
+      <!-- Product -->
+      <div class="order-product">
+        <div class="order-img-wrap">
+          <img [src]="o.product.img" [alt]="o.product.name" />
+        </div>
+        <div class="order-product-info">
+          <p class="item-category">{{ o.product.category }}</p>
+          <h4 class="item-name">{{ o.product.name }}</h4>
+          <p class="item-price">₱{{ o.product.price | number }}</p>
+        </div>
+      </div>
+
+      <div class="order-divider"></div>
+
+      <!-- Meta -->
+      <div class="order-meta">
+        <div class="meta-row">
+          <span class="meta-label">👤 Customer</span>
+          <span class="meta-value">{{ o.customerName }}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">📞 Contact</span>
+          <span class="meta-value">{{ o.contact }}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">🚲 Delivery</span>
+          <span class="meta-value">{{ o.deliveryService }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height: 40px;"></div>
+</ion-content>

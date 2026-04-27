@@ -1,0 +1,139 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="admin-toolbar">
+    <ion-title class="admin-title">
+      <span class="title-text">Dashboard</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="add-product-btn" (click)="openAddProductAlert()" fill="solid">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Add Product
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Stats Row -->
+  <div class="stats-row fade-up">
+    <div class="stat-card">
+      <p class="stat-value">{{ products.length }}</p>
+      <p class="stat-label">Products</p>
+    </div>
+    <div class="stat-card stat-highlight">
+      <p class="stat-value">{{ orders.length }}</p>
+      <p class="stat-label">Orders</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-value">{{ getPendingCount() }}</p>
+      <p class="stat-label">Pending</p>
+    </div>
+  </div>
+
+  <!-- ── PRODUCTS SECTION ── -->
+  <div class="section-wrap fade-up">
+    <div class="section-head">
+      <h2 class="section-title">Products</h2>
+      <span class="section-badge">{{ products.length }}</span>
+    </div>
+
+    <div *ngFor="let p of products; let i = index" class="admin-card product-item"
+         [style.animation-delay]="(i * 0.04) + 's'">
+      <img [src]="p.img" [alt]="p.name" class="admin-img" />
+      <div class="admin-info">
+        <p class="admin-meta">{{ p.category }} · <span class="tag-chip">{{ p.tag }}</span></p>
+        <h3 class="admin-name">{{ p.name }}</h3>
+        <p class="admin-price">₱{{ p.price | number }}</p>
+
+        <!-- Delivery Options -->
+        <div *ngIf="p.deliveryOptions?.length" class="delivery-list">
+          <div *ngFor="let d of p.deliveryOptions" class="delivery-row">
+            <div class="delivery-info">
+              <ion-icon name="bicycle-outline"></ion-icon>
+              <span>{{ d.name }} — ₱{{ d.priceAdjustment }} ({{ d.estimatedTime }})</span>
+            </div>
+            <div class="delivery-actions">
+              <button class="icon-btn" (click)="editDeliveryOption(p, d)">
+                <ion-icon name="pencil-outline"></ion-icon>
+              </button>
+              <button class="icon-btn danger" (click)="removeDeliveryOption(p, d)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button class="action-btn edit-btn" (click)="editProduct(p)">
+            <ion-icon name="pencil-outline"></ion-icon> Edit
+          </button>
+          <button class="action-btn delivery-btn" (click)="addDeliveryOption(p)">
+            <ion-icon name="add-outline"></ion-icon> Delivery
+          </button>
+          <button class="action-btn delete-btn" (click)="removeProduct(p)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ORDERS SECTION ── -->
+  <div class="section-wrap fade-up">
+    <div class="section-head">
+      <h2 class="section-title">Customer Orders</h2>
+      <span class="section-badge">{{ orders.length }}</span>
+    </div>
+
+    <div *ngIf="!orders.length" class="empty-orders">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <p>No orders yet</p>
+    </div>
+
+    <div *ngFor="let o of orders; let i = index" class="admin-card order-item"
+         [style.animation-delay]="(i * 0.04) + 's'">
+
+      <div class="order-top">
+        <div>
+          <p class="order-label">Order #{{ o.id }}</p>
+          <h3 class="order-product-name">{{ o.product.name }}</h3>
+        </div>
+        <div class="status-select-wrap">
+          <ion-select
+            [(ngModel)]="o.status"
+            (ionChange)="updateOrderStatus(o, o.status)"
+            interface="action-sheet"
+            class="status-select"
+            [ngClass]="'status-' + o.status.toLowerCase().replace(' ', '-')">
+            <ion-select-option value="Pending">Pending</ion-select-option>
+            <ion-select-option value="Preparing">Preparing</ion-select-option>
+            <ion-select-option value="Out for Delivery">Out for Delivery</ion-select-option>
+            <ion-select-option value="Delivered">Delivered</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <div class="order-details-grid">
+        <div class="detail-row">
+          <ion-icon name="person-outline"></ion-icon>
+          <span>{{ o.customerName }}</span>
+        </div>
+        <div class="detail-row">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>{{ o.contact }}</span>
+        </div>
+        <div class="detail-row">
+          <ion-icon name="location-outline"></ion-icon>
+          <span>{{ o.address }}</span>
+        </div>
+        <div class="detail-row">
+          <ion-icon name="bicycle-outline"></ion-icon>
+          <span>{{ o.deliveryService }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-spacer"></div>
+</ion-content>

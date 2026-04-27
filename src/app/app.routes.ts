@@ -10,4 +10,17 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'cart',
+    loadComponent: () => import('./cart/cart.page').then( m => m.CartPage)
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin.page').then( m => m.AdminPage)
+  },
+  {
+  path: 'customer-orders',
+  loadComponent: () => import('./customer-orders/customer-orders.page').then(m => m.CustomerOrdersPage)
+},
+
 ];
