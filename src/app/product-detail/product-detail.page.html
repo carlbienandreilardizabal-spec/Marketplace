@@ -1,13 +1,17 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="detail-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" style="--color: #f0ede8;"></ion-back-button>
+      <ion-back-button
+        defaultHref="/home"
+        text="Back"
+        style="--color: #f0ede8; --icon-font-size: 20px;">
+      </ion-back-button>
     </ion-buttons>
     <ion-title class="detail-title">Product Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="product" class="detail-content">
+<ion-content *ngIf="product" class="detail-content" [scrollY]="true" [scrollX]="false">
 
   <!-- Product Image -->
   <div class="image-container">
@@ -52,6 +56,9 @@
     </div>
 
   </div>
+
+  <!-- bottom padding so content isn't cut off -->
+  <div style="height: 60px;"></div>
 
 </ion-content>
 

@@ -111,3 +111,9 @@ ion-spinner {
   font-weight: 700;
   font-size: 14px;
 }
+app-product-detail {
+  ion-content {
+    --overflow: auto;
+    overflow-y: auto !important;
+  }
+}
