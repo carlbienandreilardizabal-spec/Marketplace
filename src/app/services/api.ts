@@ -40,7 +40,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // ── Products ──────────────────────────────────────────
+  //  Products 
   getProducts() {
     return this.http.get<Product[]>(this.baseUrl + '/products');
   }
@@ -57,7 +57,7 @@ export class ApiService {
     return this.http.delete(`${this.baseUrl}/products/${id}`);
   }
 
-  // ── Cart ──────────────────────────────────────────────
+  //  Cart 
   getCart() {
     return this.http.get<Product[]>(this.baseUrl + '/cart');
   }
@@ -79,7 +79,7 @@ export class ApiService {
     );
   }
 
-  // ── Orders ────────────────────────────────────────────
+  //  Orders 
   getOrders() {
     return this.http.get<Order[]>(this.baseUrl + '/orders');
   }

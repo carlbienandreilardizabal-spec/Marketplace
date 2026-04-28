@@ -54,7 +54,7 @@ export class Cart {
     if (savedCart) this.cart = JSON.parse(savedCart);
   }
 
-  /* ================= PRODUCT MANAGEMENT (ADMIN) ================= */
+  /* for admin */
   getProducts(): Product[] {
     return this.products;
   }

@@ -3,9 +3,7 @@
     <div class="toolbar-inner">
       <span class="logo-text">market<span class="logo-accent">place</span></span>
       <div class="nav-buttons">
-        <a routerLink="/customer-orders" class="nav-icon-btn">
-          Orders
-        </a>
+        <a routerLink="/customer-orders" class="nav-icon-btn">Orders</a>
         <a routerLink="/cart" class="nav-icon-btn cart-wrap">
           Cart
           <span *ngIf="cart.length > 0" class="cart-badge">{{ cart.length }}</span>
@@ -16,74 +14,81 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" style="--overflow: scroll;">
+  <div class="page-container">
 
-  <!-- Hero -->
-  <div class="hero-banner">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">New Season Arrivals</p>
-      <h1 class="hero-title">Find Your<br><span class="hero-accent">Perfect Style</span></h1>
-      <p class="hero-sub">Shoes · Bags · Watches · Clothing</p>
-      <div class="hero-btn">Shop Now →</div>
-    </div>
-    <div class="hero-glow"></div>
-  </div>
-
-  <!-- Native Search -->
-  <div class="search-wrap">
-    <div class="search-box">
-      <ion-icon name="search-outline" class="search-icon"></ion-icon>
-      <input
-        class="search-input"
-        type="text"
-        placeholder="Search products, brands..."
-        (input)="onNativeSearch($event)" />
-    </div>
-  </div>
-
-  <!-- Loading -->
-  <div *ngIf="allItems.length === 0" class="loading-state">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Loading products...</p>
-  </div>
-
-  <!-- No results -->
-  <div *ngIf="items.length === 0 && allItems.length > 0" class="empty-search">
-    <ion-icon name="search-outline"></ion-icon>
-    <p>No results for "{{ searchTerm }}"</p>
-  </div>
-
-  <!-- Section Header -->
-  <div *ngIf="items.length > 0" class="section-header">
-    <h2 class="section-title">Featured Products</h2>
-    <span class="section-count">{{ items.length }} items</span>
-  </div>
-
-  <!-- Product Grid -->
-  <div class="product-grid" *ngIf="items.length > 0">
-    <div class="product-card" *ngFor="let i of items">
-      <div class="product-image-wrap">
-        <img [src]="i.img" [alt]="i.name" class="product-img" />
-        <div class="product-tag">{{ i.tag }}</div>
+    <!-- Hero -->
+    <div class="hero-banner">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">New Season Arrivals</p>
+        <h1 class="hero-title">Find Your<br><span class="hero-accent">Perfect Style</span></h1>
+        <p class="hero-sub">Shoes · Bags · Watches · Clothing</p>
+        <div class="hero-btn">Shop Now →</div>
       </div>
-      <div class="product-body">
-        <p class="product-category">{{ i.category }}</p>
-        <h3 class="product-name">{{ i.name }}</h3>
-        <div class="product-stars">
-          <ion-icon
-            *ngFor="let star of [1,2,3,4,5]"
-            [name]="star <= i.rating ? 'star' : 'star-outline'"
-            class="star"
-            [class.star-filled]="star <= i.rating"
-            (click)="setRating(i, star)">
-          </ion-icon>
-        </div>
-        <div class="product-footer">
-          <span class="product-price">₱{{ i.price | number }}</span>
-          <div class="add-btn" (click)="addToCart(i)">+</div>
-        </div>
+      <div class="hero-glow"></div>
+    </div>
+
+    <!-- Native Search -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Search products, brands..."
+          (input)="onNativeSearch($event)" />
       </div>
     </div>
-  </div>
 
-  <div style="height: 60px;"></div>
+    <!-- Loading -->
+    <div *ngIf="allItems.length === 0" class="loading-state">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading products...</p>
+    </div>
+
+    <!-- No results -->
+    <div *ngIf="items.length === 0 && allItems.length > 0" class="empty-search">
+      <ion-icon name="search-outline"></ion-icon>
+      <p>No results for "{{ searchTerm }}"</p>
+    </div>
+
+    <!-- Section Header -->
+    <div *ngIf="items.length > 0" class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <span class="section-count">{{ items.length }} items</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" *ngIf="items.length > 0">
+      <div class="product-card" *ngFor="let i of items">
+
+        <div class="product-image-wrap" (click)="viewProduct(i)">
+          <img [src]="i.img" [alt]="i.name" class="product-img" />
+          <div class="product-tag">{{ i.tag }}</div>
+        </div>
+
+        <div class="product-body">
+          <p class="product-category" (click)="viewProduct(i)">{{ i.category }}</p>
+          <h3 class="product-name" (click)="viewProduct(i)">{{ i.name }}</h3>
+
+          <div class="product-stars">
+            <ion-icon
+              *ngFor="let star of [1,2,3,4,5]"
+              [name]="star <= i.rating ? 'star' : 'star-outline'"
+              class="star"
+              [class.star-filled]="star <= i.rating"
+              (click)="setRating(i, star)">
+            </ion-icon>
+          </div>
+
+          <div class="product-footer">
+            <span class="product-price">₱{{ i.price | number }}</span>
+            <div class="add-btn" (click)="addToCart(i)">+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+  </div>
 </ion-content>

@@ -8,6 +8,7 @@ import {
   star, starOutline, searchOutline, cartOutline,
   bagOutline, receiptOutline, addOutline, arrowForwardOutline
 } from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +25,15 @@ export class HomePage implements OnInit {
 
   constructor(
     private api: ApiService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private router: Router
   ) {
     addIcons({ star, starOutline, searchOutline, cartOutline, bagOutline, receiptOutline, addOutline, arrowForwardOutline });
   }
+
+  viewProduct(product: Product) {
+  this.router.navigate(['/product-detail', product.id]);
+}
 
   ngOnInit() {
     this.loadProducts();

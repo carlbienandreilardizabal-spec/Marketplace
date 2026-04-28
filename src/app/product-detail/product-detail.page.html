@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="detail-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" class="back-btn"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="detail-title">Product Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="product" class="detail-content">
+
+  <!-- Product Image -->
+  <div class="image-container">
+    <img [src]="product.img" [alt]="product.name" class="product-image" />
+    <div class="image-tag">{{ product.tag }}</div>
+  </div>
+
+  <!-- Product Info Card -->
+  <div class="info-card">
+
+    <p class="product-category">{{ product.category }}</p>
+    <h1 class="product-name">{{ product.name }}</h1>
+
+    <!-- Stars -->
+    <div class="stars-row">
+      <ion-icon
+        *ngFor="let s of [1,2,3,4,5]"
+        [name]="s <= product.rating ? 'star' : 'star-outline'"
+        class="star"
+        [class.star-filled]="s <= product.rating"
+        (click)="setRating(s)">
+      </ion-icon>
+      <span class="rating-label">{{ product.rating }}.0</span>
+    </div>
+
+    <!-- Price -->
+    <div class="price-row">
+      <span class="product-price">₱{{ product.price | number }}</span>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Description -->
+    <h3 class="section-label">Description</h3>
+    <p class="product-description">{{ product.description }}</p>
+
+    <!-- Add to Cart Button -->
+    <div class="cart-btn" (click)="addToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      Add to Cart
+    </div>
+
+  </div>
+
+</ion-content>
+
+<!-- Not found -->
+<ion-content *ngIf="!product" class="ion-padding">
+  <div class="not-found">
+    <p>Product not found.</p>
+  </div>
+</ion-content>

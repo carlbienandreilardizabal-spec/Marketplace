@@ -1,4 +1,4 @@
-// ── HOME PAGE ──────────────────────────────────────────
+// ── HOME PAGE 
 
 ion-content {
   --background: #0a0a0a;
@@ -12,14 +12,39 @@ ion-content {
   --min-height: 56px;
 }
 
-// ── TOOLBAR ────────────────────────────────────────────
+// ── PAGE CONTAINER 
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media (min-width: 768px) {
+    padding: 0 32px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 48px;
+  }
+}
+
+// ── TOOLBAR 
 .toolbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 8px 32px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 8px 48px;
+  }
 }
 
 .logo-text {
@@ -28,6 +53,10 @@ ion-content {
   font-weight: 700;
   color: #f0ede8;
   letter-spacing: -0.5px;
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
 }
 
 .logo-accent {
@@ -40,7 +69,6 @@ ion-content {
   gap: 8px;
 }
 
-// Using <a> tags instead of ion-button — guaranteed visible on Android
 .nav-icon-btn {
   display: flex;
   align-items: center;
@@ -55,6 +83,12 @@ ion-content {
   font-weight: 600;
   font-family: 'DM Sans', sans-serif;
   -webkit-tap-highlight-color: rgba(201,168,76,0.2);
+
+  @media (min-width: 768px) {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 15px;
+  }
 
   &:active {
     background: #2a2a2a;
@@ -85,16 +119,27 @@ ion-content {
   z-index: 10;
 }
 
-// ── HERO ───────────────────────────────────────────────
+// ── HERO 
 .hero-banner {
   position: relative;
-  margin: 12px 16px 0;
+  margin: 12px 0 0;
   border-radius: 20px;
   background: linear-gradient(135deg, #1a1200 0%, #0f0f0f 40%, #1a1000 100%);
   border: 1px solid rgba(201,168,76,0.2);
   overflow: hidden;
   padding: 36px 24px 32px;
   min-height: 200px;
+
+  @media (min-width: 768px) {
+    min-height: 260px;
+    padding: 52px 40px;
+    border-radius: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    min-height: 320px;
+    padding: 72px 60px;
+  }
 }
 
 .hero-glow {
@@ -105,6 +150,11 @@ ion-content {
   height: 180px;
   background: radial-gradient(circle, rgba(201,168,76,0.25) 0%, transparent 70%);
   pointer-events: none;
+
+  @media (min-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 .hero-inner {
@@ -119,6 +169,10 @@ ion-content {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin: 0 0 10px;
+
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
 }
 
 .hero-title {
@@ -128,6 +182,14 @@ ion-content {
   color: #f0ede8;
   line-height: 1.15;
   margin: 0 0 8px;
+
+  @media (min-width: 768px) {
+    font-size: 44px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 56px;
+  }
 }
 
 .hero-accent {
@@ -138,6 +200,10 @@ ion-content {
   font-size: 13px;
   color: #888580;
   margin: 0 0 22px;
+
+  @media (min-width: 768px) {
+    font-size: 15px;
+  }
 }
 
 .hero-btn {
@@ -149,13 +215,21 @@ ion-content {
   padding: 12px 24px;
   border-radius: 50px;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
   user-select: none;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    padding: 14px 32px;
+  }
+
+  &:active {
+    opacity: 0.85;
+  }
 }
 
-// ── SEARCH ─────────────────────────────────────────────
+// ── SEARCH 
 .search-wrap {
-  padding: 16px 16px 8px;
+  padding: 16px 0 8px;
 }
 
 .search-box {
@@ -166,6 +240,11 @@ ion-content {
   padding: 0 14px;
   height: 48px;
   gap: 10px;
+
+  @media (min-width: 768px) {
+    height: 54px;
+    border-radius: 16px;
+  }
 }
 
 .search-icon {
@@ -183,14 +262,17 @@ ion-content {
   font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   height: 100%;
-  -webkit-appearance: none;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 
   &::placeholder {
     color: #888580;
   }
 }
 
-// ── STATES ─────────────────────────────────────────────
+// ── STATES 
 .loading-state {
   display: flex;
   flex-direction: column;
@@ -213,12 +295,12 @@ ion-content {
   p { font-size: 14px; margin: 0; }
 }
 
-// ── SECTION ────────────────────────────────────────────
+// ── SECTION 
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 16px 8px;
+  padding: 16px 0 8px;
 }
 
 .section-title {
@@ -227,6 +309,10 @@ ion-content {
   font-weight: 600;
   color: #f0ede8;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .section-count {
@@ -234,12 +320,24 @@ ion-content {
   color: #888580;
 }
 
-// ── PRODUCT GRID ───────────────────────────────────────
+// ── PRODUCT GRID 
 .product-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  padding: 0 12px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .product-card {
@@ -247,6 +345,13 @@ ion-content {
   border-radius: 16px;
   border: 1px solid #1e1e1e;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,168,76,0.3);
+  }
 }
 
 .product-image-wrap {
@@ -254,6 +359,14 @@ ion-content {
   height: 150px;
   overflow: hidden;
   background: #1a1a1a;
+
+  @media (min-width: 768px) {
+    height: 190px;
+  }
+
+  @media (min-width: 1024px) {
+    height: 220px;
+  }
 }
 
 .product-img {
@@ -261,6 +374,11 @@ ion-content {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s;
+
+  .product-card:hover & {
+    transform: scale(1.05);
+  }
 }
 
 .product-tag {
@@ -279,6 +397,10 @@ ion-content {
 
 .product-body {
   padding: 10px;
+
+  @media (min-width: 768px) {
+    padding: 14px;
+  }
 }
 
 .product-category {
@@ -287,6 +409,7 @@ ion-content {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 3px;
+  cursor: pointer;
 }
 
 .product-name {
@@ -299,6 +422,11 @@ ion-content {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    font-size: 15px;
+  }
 }
 
 .product-stars {
@@ -328,6 +456,10 @@ ion-content {
   font-size: 14px;
   font-weight: 700;
   color: #f0ede8;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .add-btn {
@@ -344,10 +476,15 @@ ion-content {
   cursor: pointer;
   flex-shrink: 0;
   line-height: 1;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
   user-select: none;
+  transition: background 0.2s;
 
-  &:active {
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  &:active, &:hover {
     background: #e8c97a;
   }
 }
