@@ -104,6 +104,7 @@ ion-spinner {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
 .custom-toast {
   --background: #c9a84c;
   --color: #000;
@@ -111,9 +112,15 @@ ion-spinner {
   font-weight: 700;
   font-size: 14px;
 }
+
 app-product-detail {
   ion-content {
     --overflow: auto;
     overflow-y: auto !important;
+  }
+
+  ion-back-button {
+    --color: #f0ede8;
+    display: block !important;
   }
 }
