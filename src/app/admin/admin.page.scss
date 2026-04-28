@@ -1,5 +1,11 @@
 // ── ADMIN PAGE ─────────────────────────────────────────
 
+ion-content {
+  --background: #0a0a0a;
+  --overflow: scroll;
+  overflow-y: scroll !important;
+}
+
 .admin-toolbar {
   --background: #0a0a0a;
 }
@@ -26,24 +32,53 @@
   height: 36px;
 }
 
+// ── PAGE CONTAINER ─────────────────────────────────────
+.admin-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media (min-width: 768px) {
+    padding: 0 32px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 48px;
+  }
+}
+
 // ── STATS ROW ──────────────────────────────────────────
 .stats-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  padding: 16px 16px 8px;
+  padding: 16px 0 8px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
 }
 
 .stat-card {
-  flex: 1;
   background: #141414;
   border: 1px solid #1e1e1e;
-  border-radius: 14px;
-  padding: 14px 12px;
+  border-radius: 16px;
+  padding: 16px 12px;
   text-align: center;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: rgba(201,168,76,0.2);
+  }
+
+  @media (min-width: 768px) {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
 }
 
 .stat-highlight {
-  background: rgba(201,168,76,0.1);
+  background: rgba(201,168,76,0.08);
   border-color: rgba(201,168,76,0.3);
 
   .stat-value { color: #c9a84c; }
@@ -51,23 +86,31 @@
 
 .stat-value {
   font-family: 'Playfair Display', serif;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: #f0ede8;
-  margin: 0 0 3px;
+  margin: 0 0 4px;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 }
 
 .stat-label {
-  font-size: 11px;
+  font-size: 10px;
   color: #888580;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 }
 
 // ── SECTION ────────────────────────────────────────────
 .section-wrap {
-  padding: 8px 16px;
+  padding: 8px 0;
   margin-bottom: 8px;
 }
 
@@ -75,24 +118,49 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1e1e1e;
 }
 
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #f0ede8;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .section-badge {
-  background: #1e1e1e;
-  color: #888580;
+  background: rgba(201,168,76,0.15);
+  color: #c9a84c;
   font-size: 11px;
   padding: 3px 10px;
   border-radius: 20px;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+// ── PRODUCT GRID ───────────────────────────────────────
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 // ── ADMIN CARD ─────────────────────────────────────────
@@ -100,30 +168,36 @@
   background: #141414;
   border: 1px solid #1e1e1e;
   border-radius: 16px;
-  margin-bottom: 12px;
   overflow: hidden;
   animation: fadeUp 0.35s ease both;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: rgba(201,168,76,0.25);
+    transform: translateY(-2px);
+  }
 }
 
 // ── PRODUCT ITEM ───────────────────────────────────────
 .product-item {
   display: flex;
-  gap: 0;
+  flex-direction: column;
 }
 
 .admin-img {
-  width: 90px;
-  height: 100%;
-  min-height: 110px;
+  width: 100%;
+  height: 160px;
   object-fit: cover;
   display: block;
-  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    height: 180px;
+  }
 }
 
 .admin-info {
   flex: 1;
-  padding: 12px 12px 10px;
-  min-width: 0;
+  padding: 14px;
 }
 
 .admin-meta {
@@ -131,30 +205,32 @@
   color: #888580;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 0 0 3px;
+  margin: 0 0 4px;
 }
 
 .tag-chip {
   color: #c9a84c;
+  font-weight: 700;
 }
 
 .admin-name {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #f0ede8;
   margin: 0 0 4px;
+  line-height: 1.3;
 }
 
 .admin-price {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: #c9a84c;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 // Delivery options
 .delivery-list {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .delivery-row {
@@ -207,6 +283,7 @@
 .admin-actions {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .action-btn {
@@ -215,7 +292,7 @@
   gap: 4px;
   border: none;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 7px 12px;
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -229,38 +306,57 @@
 .edit-btn {
   background: #1e1e1e;
   color: #f0ede8;
+  &:hover { background: #2a2a2a; }
 }
 
 .delivery-btn {
   background: rgba(201,168,76,0.15);
   color: #c9a84c;
+  &:hover { background: rgba(201,168,76,0.25); }
 }
 
 .delete-btn {
   background: rgba(224,82,82,0.12);
   color: #e05252;
-  padding: 6px 8px;
+  padding: 7px 10px;
   margin-left: auto;
+  &:hover { background: rgba(224,82,82,0.2); }
+}
+
+// ── ORDERS GRID ────────────────────────────────────────
+.orders-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 // ── ORDER ITEM ─────────────────────────────────────────
 .order-item {
-  padding: 14px;
+  padding: 16px;
 }
 
 .order-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  gap: 10px;
 }
 
 .order-label {
-  font-size: 11px;
+  font-size: 10px;
   color: #888580;
   margin: 0 0 2px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .order-product-name {
@@ -268,10 +364,12 @@
   font-weight: 600;
   color: #f0ede8;
   margin: 0;
+  line-height: 1.3;
 }
 
 .status-select-wrap {
   min-width: 130px;
+  flex-shrink: 0;
 }
 
 .status-select {
@@ -289,6 +387,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 10px 12px;
 }
 
 .detail-row {
@@ -307,9 +408,12 @@
   text-align: center;
   padding: 40px 20px;
   color: #888580;
+  background: #141414;
+  border-radius: 16px;
+  border: 1px solid #1e1e1e;
 
   ion-icon { font-size: 40px; color: #2a2a2a; display: block; margin: 0 auto 10px; }
   p { font-size: 14px; margin: 0; }
 }
 
-.bottom-spacer { height: 32px; }
+.bottom-spacer { height: 60px; }
