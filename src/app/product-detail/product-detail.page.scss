@@ -1,16 +1,18 @@
-.detail-toolbar {
-  --background: #0a0a0a;
-  --color: #f0ede8;
+:host {
+  .detail-toolbar {
+    --background: #0a0a0a;
+    --color: #f0ede8;
+  }
+
+  .detail-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f0ede8;
+    font-family: 'Playfair Display', serif;
+  }
 }
 
-.detail-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #f0ede8;
-  font-family: 'Playfair Display', serif;
-}
-
-.detail-content {
+ion-content.detail-content {
   --background: #0a0a0a;
 }
 
@@ -29,27 +31,27 @@
   @media (min-width: 1024px) {
     height: 520px;
   }
+}
 
-  .product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  .image-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: #c9a84c;
-    color: #000;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
+.image-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #c9a84c;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 20px;
 }
 
 // ── INFO CARD ──────────────────────────────────────────
@@ -66,7 +68,6 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 28px 28px 0 0;
   }
 
   @media (min-width: 1024px) {
@@ -101,38 +102,38 @@
 .stars-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   margin-bottom: 18px;
+}
 
-  ion-icon {
-    font-size: 20px;
-    color: #3a3a3a;
-    cursor: pointer;
+.star {
+  font-size: 20px;
+  color: #3a3a3a;
+  cursor: pointer;
 
-    &.star-filled {
-      color: #c9a84c;
-    }
+  &.star-filled {
+    color: #c9a84c;
   }
+}
 
-  .rating-label {
-    font-size: 13px;
-    color: #888580;
-    margin-left: 6px;
-  }
+.rating-label {
+  font-size: 13px;
+  color: #888580;
+  margin-left: 4px;
 }
 
 // ── PRICE ──────────────────────────────────────────────
 .price-row {
   margin-bottom: 20px;
+}
 
-  .product-price {
-    font-size: 30px;
-    font-weight: 800;
-    color: #f0ede8;
+.product-price {
+  font-size: 30px;
+  font-weight: 800;
+  color: #f0ede8;
 
-    @media (min-width: 768px) {
-      font-size: 36px;
-    }
+  @media (min-width: 768px) {
+    font-size: 36px;
   }
 }
 
@@ -207,12 +208,4 @@
   height: 100%;
   color: #888580;
   font-size: 15px;
-}
-
-.custom-toast {
-  --background: #c9a84c;
-  --color: #000;
-  --border-radius: 12px;
-  font-weight: 700;
-  font-size: 14px;
 }
