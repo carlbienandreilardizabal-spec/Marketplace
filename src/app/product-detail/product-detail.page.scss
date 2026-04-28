@@ -1,7 +1,11 @@
 :host {
-  .detail-toolbar {
+  ion-header {
     --background: #0a0a0a;
-    --color: #f0ede8;
+  }
+
+  ion-toolbar {
+    --background: #0a0a0a;
+    --min-height: 56px;
   }
 
   .detail-title {
@@ -102,16 +106,22 @@ ion-content.detail-content {
 .stars-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   margin-bottom: 18px;
 }
 
-.star {
-  font-size: 20px;
+.star-icon {
+  font-size: 22px;
   color: #3a3a3a;
   cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s;
 
-  &.star-filled {
+  &.filled {
+    color: #c9a84c;
+  }
+
+  &:hover {
     color: #c9a84c;
   }
 }
@@ -119,7 +129,7 @@ ion-content.detail-content {
 .rating-label {
   font-size: 13px;
   color: #888580;
-  margin-left: 4px;
+  margin-left: 6px;
 }
 
 // ── PRICE ──────────────────────────────────────────────

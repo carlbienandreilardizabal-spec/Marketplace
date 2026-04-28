@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="detail-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" class="back-btn"></ion-back-button>
+      <ion-back-button defaultHref="/home" style="--color: #f0ede8;"></ion-back-button>
     </ion-buttons>
     <ion-title class="detail-title">Product Details</ion-title>
   </ion-toolbar>
@@ -23,13 +23,13 @@
 
     <!-- Stars -->
     <div class="stars-row">
-      <ion-icon
+      <span
         *ngFor="let s of [1,2,3,4,5]"
-        [name]="s <= product.rating ? 'star' : 'star-outline'"
-        class="star"
-        [class.star-filled]="s <= product.rating"
+        class="star-icon"
+        [class.filled]="s <= product.rating"
         (click)="setRating(s)">
-      </ion-icon>
+        ★
+      </span>
       <span class="rating-label">{{ product.rating }}.0</span>
     </div>
 
@@ -47,9 +47,9 @@
 
     <!-- Add to Cart Button -->
     <div class="cart-btn" (click)="addToCart()">
-  <ion-icon name="cart-outline"></ion-icon>
-  Add to Cart
-</div>
+      <ion-icon name="cart-outline"></ion-icon>
+      Add to Cart
+    </div>
 
   </div>
 
