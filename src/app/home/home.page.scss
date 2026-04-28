@@ -567,3 +567,61 @@ ion-content {
     background: #e8c97a;
   }
 }
+
+// ── STORE MAP ──────────────────────────────────────────
+.map-section {
+  margin-top: 24px;
+}
+
+.map-card {
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.map-container {
+  width: 100%;
+  height: 260px;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    height: 360px;
+  }
+
+  @media (min-width: 1024px) {
+    height: 440px;
+  }
+}
+
+.map-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+  }
+}
+
+.map-info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.map-info-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #c9a84c;
+}
+
+.map-info-value {
+  font-size: 13px;
+  color: #888580;
+}
