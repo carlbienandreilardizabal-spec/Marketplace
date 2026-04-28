@@ -104,3 +104,10 @@ ion-spinner {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+.custom-toast {
+  --background: #c9a84c;
+  --color: #000;
+  --border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+}

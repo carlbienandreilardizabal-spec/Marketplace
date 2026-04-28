@@ -75,17 +75,30 @@ export class HomePage implements OnInit {
     }
   }
 
-  async addToCart(product: Product) {
-    this.api.addToCart(product).subscribe(async () => {
+async addToCart(product: Product) {
+  this.api.addToCart(product).subscribe({
+    next: async () => {
       this.loadCart();
       const toast = await this.toastCtrl.create({
-        message: `${product.name} added to cart!`,
-        duration: 2000,
-        color: 'success'
+        message: `${product.name} added to cart! 🛒`,
+        duration: 2500,
+        color: 'success',
+        position: 'top',
+        cssClass: 'custom-toast'
       });
-      toast.present();
-    });
-  }
+      await toast.present();
+    },
+    error: async () => {
+      const toast = await this.toastCtrl.create({
+        message: 'Failed to add to cart. Try again.',
+        duration: 2500,
+        color: 'danger',
+        position: 'top'
+      });
+      await toast.present();
+    }
+  });
+}
 
   onNativeSearch(event: any) {
     this.searchTerm = event.target.value?.trim().toLowerCase() || '';

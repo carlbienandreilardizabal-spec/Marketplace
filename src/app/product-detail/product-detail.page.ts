@@ -33,17 +33,29 @@ export class ProductDetailPage implements OnInit {
   }
 
   async addToCart() {
-    if (!this.product) return;
-    this.api.addToCart(this.product).subscribe(async () => {
+  if (!this.product) return;
+  this.api.addToCart(this.product).subscribe({
+    next: async () => {
       const toast = await this.toastCtrl.create({
-        message: `${this.product!.name} added to cart!`,
-        duration: 2000,
+        message: `${this.product!.name} added to cart! 🛒`,
+        duration: 2500,
         color: 'success',
-        position: 'bottom'
+        position: 'top',
+        cssClass: 'custom-toast'
       });
-      toast.present();
-    });
-  }
+      await toast.present();
+    },
+    error: async () => {
+      const toast = await this.toastCtrl.create({
+        message: 'Failed to add to cart. Try again.',
+        duration: 2500,
+        color: 'danger',
+        position: 'top'
+      });
+      await toast.present();
+    }
+  });
+}
 
   setRating(rating: number) {
     if (!this.product) return;
