@@ -64,6 +64,16 @@
         <div class="product-image-wrap" (click)="viewProduct(i)">
           <img [src]="i.img" [alt]="i.name" class="product-img" />
           <div class="product-tag">{{ i.tag }}</div>
+
+          <!-- Hover overlay desktop only -->
+          <div class="hover-overlay">
+            <p class="overlay-category">{{ i.category }}</p>
+            <h3 class="overlay-name">{{ i.name }}</h3>
+            <p class="overlay-description">{{ i.description }}</p>
+            <div class="overlay-price">₱{{ i.price | number }}</div>
+            
+          </div>
+
         </div>
 
         <div class="product-body">

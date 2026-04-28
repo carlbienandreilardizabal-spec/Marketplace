@@ -106,8 +106,8 @@ ion-spinner {
 }
 
 .custom-toast {
-  --background: #c9a84c;
-  --color: #000;
+  --background: #c9a84c !important;
+  --color: #000 !important;
   --border-radius: 12px;
   font-weight: 700;
   font-size: 14px;
@@ -124,3 +124,4 @@ app-product-detail {
     display: block !important;
   }
 }
+

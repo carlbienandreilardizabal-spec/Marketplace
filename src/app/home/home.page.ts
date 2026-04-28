@@ -82,7 +82,7 @@ async addToCart(product: Product) {
       const toast = await this.toastCtrl.create({
         message: `${product.name} added to cart! 🛒`,
         duration: 2500,
-        color: 'success',
+        color: 'warning',
         position: 'top',
         cssClass: 'custom-toast'
       });
