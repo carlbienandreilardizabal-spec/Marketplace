@@ -53,6 +53,16 @@ export class AdminPage {
     });
   }
 
+  // cycles through statuses on button click
+  cycleStatus(order: Order) {
+    const statuses: Order['status'][] = ['Pending', 'Preparing', 'Out for Delivery', 'Delivered'];
+    const currentIndex = statuses.indexOf(order.status);
+    const nextStatus = statuses[(currentIndex + 1) % statuses.length];
+    this.api.updateOrderStatus(order.id!, nextStatus).subscribe(() => {
+      order.status = nextStatus;
+    });
+  }
+
   getPendingCount(): number {
     return this.orders.filter(o => o.status === 'Pending').length;
   }

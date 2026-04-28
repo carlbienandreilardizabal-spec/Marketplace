@@ -103,23 +103,23 @@
              [style.animation-delay]="(i * 0.04) + 's'">
 
           <div class="order-top">
-            <div>
+            <div class="order-title-wrap">
               <p class="order-label">Order #{{ o.id }}</p>
               <h3 class="order-product-name">{{ o.product.name }}</h3>
             </div>
-            <div class="status-select-wrap">
-              <ion-select
-                [(ngModel)]="o.status"
-                (ionChange)="updateOrderStatus(o, o.status)"
-                interface="action-sheet"
-                class="status-select"
-                [ngClass]="'status-' + o.status.toLowerCase().replace(' ', '-')">
-                <ion-select-option value="Pending">Pending</ion-select-option>
-                <ion-select-option value="Preparing">Preparing</ion-select-option>
-                <ion-select-option value="Out for Delivery">Out for Delivery</ion-select-option>
-                <ion-select-option value="Delivered">Delivered</ion-select-option>
-              </ion-select>
-            </div>
+          </div>
+
+          <!-- Status cycle button -->
+          <div class="status-wrap">
+            <button
+              class="status-btn"
+              [class.status-pending]="o.status === 'Pending'"
+              [class.status-preparing]="o.status === 'Preparing'"
+              [class.status-delivery]="o.status === 'Out for Delivery'"
+              [class.status-delivered]="o.status === 'Delivered'"
+              (click)="cycleStatus(o)">
+              {{ o.status }} →
+            </button>
           </div>
 
           <div class="order-details-grid">
