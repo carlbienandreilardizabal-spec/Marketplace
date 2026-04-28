@@ -417,3 +417,144 @@ ion-content {
 }
 
 .bottom-spacer { height: 60px; }
+
+.status-wrap {
+  margin-bottom: 12px;
+}
+
+.status-select-native {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  appearance: auto;
+
+  &.status-pending {
+    background: rgba(136,133,128,0.2);
+    color: #888580;
+  }
+
+  &.status-preparing {
+    background: rgba(201,168,76,0.2);
+    color: #c9a84c;
+  }
+
+  &.status-delivery {
+    background: rgba(99,179,237,0.2);
+    color: #63b3ed;
+  }
+
+  &.status-delivered {
+    background: rgba(72,187,120,0.2);
+    color: #48bb78;
+  }
+
+  option {
+    background: #1a1a1a;
+    color: #f0ede8;
+    font-weight: 600;
+  }
+}
+// ── MODAL ──────────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-card {
+  background: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid #2a2a2a;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f0ede8;
+  margin: 0 0 20px;
+}
+
+.modal-field {
+  margin-bottom: 14px;
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888580;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    background: #262626;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #f0ede8;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #c9a84c;
+    }
+
+    &::placeholder {
+      color: #555;
+    }
+  }
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:active { opacity: 0.7; }
+}
+
+.cancel-btn {
+  background: #2a2a2a;
+  color: #888580;
+}
+
+.save-btn {
+  background: #c9a84c;
+  color: #000;
+
+  &:hover { background: #e8c97a; }
+}

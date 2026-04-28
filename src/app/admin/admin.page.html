@@ -4,7 +4,7 @@
       <span class="title-text">Dashboard</span>
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button class="add-product-btn" (click)="openAddProductAlert()" fill="solid">
+      <ion-button class="add-product-btn" (click)="openAddProductModal()" fill="solid">
         <ion-icon slot="start" name="add-outline"></ion-icon>
         Add Product
       </ion-button>
@@ -58,7 +58,7 @@
                   <span>{{ d.name }} — ₱{{ d.priceAdjustment }} ({{ d.estimatedTime }})</span>
                 </div>
                 <div class="delivery-actions">
-                  <button class="icon-btn" (click)="editDeliveryOption(p, d)">
+                  <button class="icon-btn" (click)="openEditDeliveryModal(p, d)">
                     <ion-icon name="pencil-outline"></ion-icon>
                   </button>
                   <button class="icon-btn danger" (click)="removeDeliveryOption(p, d)">
@@ -69,10 +69,10 @@
             </div>
 
             <div class="admin-actions">
-              <button class="action-btn edit-btn" (click)="editProduct(p)">
+              <button class="action-btn edit-btn" (click)="openEditProductModal(p)">
                 <ion-icon name="pencil-outline"></ion-icon> Edit
               </button>
-              <button class="action-btn delivery-btn" (click)="addDeliveryOption(p)">
+              <button class="action-btn delivery-btn" (click)="openAddDeliveryModal(p)">
                 <ion-icon name="add-outline"></ion-icon> Delivery
               </button>
               <button class="action-btn delete-btn" (click)="removeProduct(p)">
@@ -109,17 +109,23 @@
             </div>
           </div>
 
-          <!-- Status cycle button -->
+          <!-- Status dropdown -->
           <div class="status-wrap">
-            <button
-              class="status-btn"
-              [class.status-pending]="o.status === 'Pending'"
-              [class.status-preparing]="o.status === 'Preparing'"
-              [class.status-delivery]="o.status === 'Out for Delivery'"
-              [class.status-delivered]="o.status === 'Delivered'"
-              (click)="cycleStatus(o)">
-              {{ o.status }} →
-            </button>
+            <select
+              class="status-select-native"
+              [ngClass]="{
+                'status-pending': o.status === 'Pending',
+                'status-preparing': o.status === 'Preparing',
+                'status-delivery': o.status === 'Out for Delivery',
+                'status-delivered': o.status === 'Delivered'
+              }"
+              [(ngModel)]="o.status"
+              (change)="updateOrderStatus(o, o.status)">
+              <option value="Pending">⏳ Pending</option>
+              <option value="Preparing">🔧 Preparing</option>
+              <option value="Out for Delivery">🚴 Out for Delivery</option>
+              <option value="Delivered">✅ Delivered</option>
+            </select>
           </div>
 
           <div class="order-details-grid">
@@ -147,4 +153,71 @@
 
     <div class="bottom-spacer"></div>
   </div>
+
+  <!-- ── ADD/EDIT PRODUCT MODAL ── -->
+  <div class="modal-overlay" *ngIf="showProductModal" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <h2 class="modal-title">{{ editingProduct ? 'Edit Product' : 'Add Product' }}</h2>
+
+      <div class="modal-field">
+        <label>Product Name</label>
+        <input type="text" [(ngModel)]="productForm.name" placeholder="Product Name" />
+      </div>
+      <div class="modal-field">
+        <label>Price</label>
+        <input type="number" [(ngModel)]="productForm.price" placeholder="Price" />
+      </div>
+      <div class="modal-field">
+        <label>Tag</label>
+        <input type="text" [(ngModel)]="productForm.tag" placeholder="e.g. HOT, NEW" />
+      </div>
+      <div class="modal-field">
+        <label>Category</label>
+        <input type="text" [(ngModel)]="productForm.category" placeholder="e.g. Shoes, Bags" />
+      </div>
+      <div class="modal-field">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="productForm.description" placeholder="Description" />
+      </div>
+      <div class="modal-field">
+        <label>Image URL</label>
+        <input type="text" [(ngModel)]="productForm.img" placeholder="https://..." />
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel-btn" (click)="closeModal()">Cancel</button>
+        <button class="modal-btn save-btn" (click)="saveProduct()">
+          {{ editingProduct ? 'Save Changes' : 'Add Product' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADD/EDIT DELIVERY MODAL ── -->
+  <div class="modal-overlay" *ngIf="showDeliveryModal" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <h2 class="modal-title">{{ editingDelivery ? 'Edit Delivery Option' : 'Add Delivery Option' }}</h2>
+
+      <div class="modal-field">
+        <label>Delivery Name</label>
+        <input type="text" [(ngModel)]="deliveryForm.name" placeholder="e.g. Standard, Express" />
+      </div>
+      <div class="modal-field">
+        <label>Price Adjustment (₱)</label>
+        <input type="number" [(ngModel)]="deliveryForm.priceAdjustment" placeholder="0" />
+      </div>
+      <div class="modal-field">
+        <label>Estimated Time</label>
+        <input type="text" [(ngModel)]="deliveryForm.estimatedTime" placeholder="e.g. 3-5 days" />
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel-btn" (click)="closeModal()">Cancel</button>
+        <button class="modal-btn save-btn" (click)="saveDelivery()">
+          {{ editingDelivery ? 'Save Changes' : 'Add Option' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
 </ion-content>
